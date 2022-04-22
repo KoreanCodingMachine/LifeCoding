@@ -22,9 +22,10 @@
     <div id="blue"></div>
     <div id="green"></div>
     <script>
+
         /* 
             전체적인 Redux의 동작방식 흐름
-            1.let store = Redux.createStore(reducer) // reducer를 호출하여 초기 state값을 정의한다.
+            1.let store = Redux.createStore(reducer) // reducer를 호출하여 초기 state값을 정의한다. , store 생성
             2.reducer()에서 state,action을 파라미터로 받아서 초기 상태를 정의함
             3.render()에서 store의 state값을 가져온다.
             4.dispatch()를 이용해 action값을 reducer()에게 전달해주고(reducer()를 호출함)
@@ -49,9 +50,11 @@
             if (action.type === 'CHANGE_COLOR') {
                 newState = Object.assign({}, state, { color: action.color })
             }
+            console.log(action.type, action, state, newState)
             return newState;
         }
-        let store = Redux.createStore(reducer);
+        let store = Redux.createStore(reducer,
+            window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()); // redux-devtools
 
         function red() {
             let state = store.getState()
